@@ -1,4 +1,5 @@
 const Enemies = [
+    // This array contains enemy Objects with similar key/values to the player. inhereted from the player class.
         voidSkeletalSoldier = {
             name: "Void Skeletal Soldier",
             hp: 20,
@@ -52,6 +53,7 @@ const Enemies = [
 
 
 class Enemy {
+    // Creates an instance of Enemy when spawnEnemy is true.
     constructor() {
         let index = Math.floor(Math.random() * Enemies.length)
         let randomEnemy = Enemies[index]
@@ -62,12 +64,14 @@ class Enemy {
         this.weapon = randomEnemy.weapon;
     }
 
+    // A random integer is chosen determined by the weapon the Enemy has.
     dealDamage() {
         let damage = Math.random() * this.damage;
         damage = Math.floor(damage);
         return damage;
     }
     
+    // When Enemy is defeated in combat, they drop their weapon and it is pushed to the player.inventory array
     dropItem(player) {
         let drop = this.weapon
         if(this.hp <= 0) {
@@ -80,9 +84,3 @@ class Enemy {
 }
 
 module.exports = Enemy
-
-/**
- * player = new Player();
- * enemy = new NPC();
- * player.hp - enemy.dealDamage()
- */
